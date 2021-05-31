@@ -5,7 +5,13 @@ function CollectionPreview({ title, items }) {
   return (
     <div className="collection-preview">
       <h1>{title.toUpperCase()}</h1>
-      <div className="preview">
+      <div
+        style={{
+          display: "flex",
+          justifyContent: "space-between",
+          flexWrap: "wrap",
+        }}
+      >
         {items.map((item) => (
           <CollectionItem key={item.id} {...item} />
         ))}
