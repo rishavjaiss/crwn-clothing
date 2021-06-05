@@ -20,16 +20,18 @@ function CartDropdown({ cartItems, history, dispatch }) {
           <span className="empty-message">Your cart is empty</span>
         )}
       </div>
-      <CustomButton
-        type="button"
-        inverted
-        onClick={() => {
-          history.push("/checkout");
-          dispatch(toggleCartHidden());
-        }}
-      >
-        GO TO CHECKOUT
-      </CustomButton>
+      {cartItems.length > 0 && (
+        <CustomButton
+          type="button"
+          inverted
+          onClick={() => {
+            history.push("/checkout");
+            dispatch(toggleCartHidden());
+          }}
+        >
+          GO TO CHECKOUT
+        </CustomButton>
+      )}
     </div>
   );
 }
