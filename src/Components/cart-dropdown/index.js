@@ -6,9 +6,10 @@ import { connect } from "react-redux";
 import { createStructuredSelector } from "reselect";
 import { withRouter } from "react-router-dom";
 import { selectCartItems } from "../../redux/cart/cart.selector";
+import { selectCurrentUser } from "../../redux/user/user.selector";
 import { toggleCartHidden } from "../../redux/cart/cartActions";
 
-function CartDropdown({ cartItems, history, dispatch }) {
+function CartDropdown({ cartItems, currentUser, history, dispatch }) {
   return (
     <div className="cart-dropdown">
       <div className="cart-items">
@@ -25,7 +26,7 @@ function CartDropdown({ cartItems, history, dispatch }) {
           type="button"
           inverted
           onClick={() => {
-            history.push("/checkout");
+            currentUser ? history.push("/checkout") : history.push("/signin");
             dispatch(toggleCartHidden());
           }}
         >
@@ -38,6 +39,7 @@ function CartDropdown({ cartItems, history, dispatch }) {
 
 const mapStateToProps = createStructuredSelector({
   cartItems: selectCartItems,
+  currentUser: selectCurrentUser,
 });
 
 export default withRouter(connect(mapStateToProps, null)(CartDropdown));
