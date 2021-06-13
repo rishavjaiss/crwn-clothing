@@ -3,7 +3,7 @@ import { Route } from "react-router-dom";
 import { connect } from "react-redux";
 import CollectionsOverview from "../../Components/collections-overview";
 import CollectionPage from "../CollectionPage";
-import { fetchCollectionStartAsync } from "../../redux/shop/shopActions";
+import { fetchCollectionStart } from "../../redux/shop/shopActions";
 import WithSpinner from "../../Components/with-spinner";
 
 const CollectionsOverviewWithSpinner = WithSpinner(CollectionsOverview);
@@ -11,7 +11,7 @@ const CollectionPageWithSpinner = WithSpinner(CollectionPage);
 class Shop extends Component {
   unsubscribeFromSnapshot = null;
   componentDidMount() {
-    this.props.fetchCollectionStartAsync();
+    this.props.fetchCollectionStart();
   }
 
   render() {
@@ -47,7 +47,7 @@ const mapStateToProps = (state) => ({
 });
 
 const mapDispatchToProps = (dispatch) => ({
-  fetchCollectionStartAsync: () => dispatch(fetchCollectionStartAsync()),
+  fetchCollectionStart: () => dispatch(fetchCollectionStart()),
 });
 
 export default connect(mapStateToProps, mapDispatchToProps)(Shop);
