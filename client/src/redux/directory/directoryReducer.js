@@ -4,7 +4,7 @@ const initialState = {
       title: "hats",
       imageUrl: "images/hats.png", // local file in public/images/
       webImageUrl:
-        "https://www.thenationalnews.com/image/policy:1.826628:1550381103/GettyImages-1090417080.jpg?f=16x9&w=1200&$p$f$w=1a86df9",
+        "https://cdn.shopify.com/s/files/1/1023/3455/files/Screen_Shot_2017-07-18_at_3.54.22_pm_1024x1024.png",
       id: 1,
       linkUrl: "shop/hats",
     },
