@@ -1,9 +1,24 @@
 import React from "react";
 import "./collections-overview.styles.scss";
-import { connect } from "react-redux";
-import { createStructuredSelector } from "reselect";
-import { selectShopCollections } from "../../redux/shop/shop.selector";
 import CollectionPreview from "../collection-preview";
+import { Query } from "react-apollo";
+import { gql } from "apollo-boost";
+import Spinner from "../spinner";
+
+const GET_COLLECTIONS = gql`
+  {
+    collections {
+      id
+      title
+      items {
+        id
+        name
+        price
+        imageUrl
+      }
+    }
+  }
+`;
 
 function CollectionsOverview({ collections }) {
   return (
@@ -15,8 +30,18 @@ function CollectionsOverview({ collections }) {
   );
 }
 
-const mapStateToProps = createStructuredSelector({
-  collections: selectShopCollections,
-});
+function CollectionsOverviewContainer() {
+  return (
+    <Query query={GET_COLLECTIONS}>
+      {({ loading, error, data }) => {
+        return loading ? (
+          <Spinner />
+        ) : (
+          <CollectionsOverview collections={data.collections} />
+        );
+      }}
+    </Query>
+  );
+}
 
-export default connect(mapStateToProps, null)(CollectionsOverview);
+export default CollectionsOverviewContainer;

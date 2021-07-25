@@ -9,11 +9,7 @@ function CollectionItem({ item, addItem }) {
   return (
     <div className="collection-item">
       <div className="image-container">
-        <img
-          className="image"
-          src={require(`../../assets${imageUrl}`).default}
-          alt={name}
-        />
+        <img className="image" src={imageUrl} alt={name} />
       </div>
       <div className="collection-footer">
         <span className="name">{name}</span>
